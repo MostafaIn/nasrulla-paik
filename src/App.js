@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react'
+import {CssBaseline } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
-function App() {
+import backScreen from './assets/images/backScreen.jpeg'
+import Header from './components/Header'
+import Home from './components/Home'
+import Galary from './components/Galary'
+import Videos from './components/Videos'
+import About from './components/About'
+
+const App = () => {
+  const classes = useStyles();
+  const [screen, setScreen] = useState('')
+  console.log(screen)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.root}>
+      <CssBaseline />
+      <Header />
+      <Home setScreen={setScreen} />
+      <Galary />
+      <Videos />
+      <About />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
+const useStyles = makeStyles( (theme) =>({
+  root:{
+		height: '100%',
+		minWidth: '100%',
+		background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(${backScreen}) center/cover fixed no-repeat`,
+		[theme.breakpoints.down('xs')]: {
+			background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(${backScreen}) center/cover fixed no-repeat`,
+		},
+  }
+}));
